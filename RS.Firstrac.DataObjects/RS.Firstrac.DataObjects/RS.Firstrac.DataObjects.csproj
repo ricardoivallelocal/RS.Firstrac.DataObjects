@@ -13,14 +13,14 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>RS.Firstrac.DataObjects</Title>
-    <Version>2025.3.12.1</Version>
+    <Version>2025.3.12.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="RS.Common.Data.API.AspNet6" Version="2023.8.2.4" />
     <PackageReference Include="RS.Common.Data.API6" Version="2023.8.2.2" />
-    <PackageReference Include="RS.Firstrac.BusinessObjects" Version="2025.3.11.1" />
+    <PackageReference Include="RS.Firstrac.BusinessObjects" Version="2025.3.12.1" />
   </ItemGroup>
 
 
