@@ -24,7 +24,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
     /// <summary>
     /// The class purpose is what.
     /// </summary>
-    public class CompanyStore : ICompanyStore
+    public class CompanyStore : StoreBase, ICompanyStore
 	{
 		#region Private Member Variables
 		/// <summary>
@@ -40,7 +40,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 		/// Initializes a new instance of the <see cref="CompanyStore"/> class.
 		/// </summary>
 		/// <param name="firstracApiHelper">The firstrac API helper.</param>
-		public CompanyStore(IFirstracApiHelper firstracApiHelper)
+		public CompanyStore(IFirstracApiHelper firstracApiHelper) : base(firstracApiHelper)
 		{
 			_firstracApiHelper = firstracApiHelper;
 		}
@@ -58,6 +58,11 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 		public async Task<IAPIOperationResult<ICompany>> Get(int id)
 		{
 			return await _firstracApiHelper.GetAsync<APIOperationResult<ICompany>>($"api/company/company/{id}");
+		}
+
+		Task<IAPIOperationResult<IEnumerable<ICompany>>> IStoreBase<ICompany>.GetAll(bool? activeOnly, Dictionary<string, object>? filterBy, bool? exactMatch, bool? mutuallyExclusive, bool? includeNavigationProperties)
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion

@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
 {
-    public interface ICompanyStore 
+    public interface ICompanyStore : IStoreBase<ICompany>
 	{
 		/// <summary>
 		/// Gets the specified identifier.

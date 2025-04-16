@@ -13,11 +13,12 @@
 // ***********************************************************************
 using RS.Common.Data.API6.Interfaces.Generic;
 using RS.Firstrac.BusinessObjects.Models.Structure.Interfaces;
+using RS.Firstrac.DataObjects.Stores.Interfaces;
 
 namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
 {
-    public interface IPersonStore
-    {
+    public interface IPersonStore : IStoreBase<IPerson>
+	{
 		/// <summary>
 		/// Gets the specified identifier.
 		/// </summary>

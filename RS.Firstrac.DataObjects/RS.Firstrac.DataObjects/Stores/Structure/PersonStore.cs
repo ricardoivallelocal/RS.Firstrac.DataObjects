@@ -16,6 +16,7 @@ using RS.Common.Data.API6.Generic;
 using RS.Common.Data.API6.Interfaces.Generic;
 using RS.Firstrac.BusinessObjects.Models.Structure.Interfaces;
 using RS.Firstrac.DataObjects.ApiIHelper;
+using RS.Firstrac.DataObjects.Stores.Interfaces;
 using RS.Firstrac.DataObjects.Stores.Structure.Interfaces;
 
 namespace RS.Firstrac.DataObjects.Stores.Structure
@@ -24,7 +25,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
     /// <summary>
     /// The class purpose is what.
     /// </summary>
-    public class PersonStore : IPersonStore
+    public class PersonStore : StoreBase, IPersonStore
 	{
 		#region Private Member Variables
 		/// <summary>
@@ -40,7 +41,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 		/// Initializes a new instance of the <see cref="PersonStore"/> class.
 		/// </summary>
 		/// <param name="firstracApiHelper">The firstrac API helper.</param>
-		public PersonStore(IFirstracApiHelper firstracApiHelper)
+		public PersonStore(IFirstracApiHelper firstracApiHelper) : base(firstracApiHelper)
 		{
 			_firstracApiHelper = firstracApiHelper;
 		}
@@ -58,6 +59,11 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 		public async Task<IAPIOperationResult<bool>> Save(IPerson model)
 		{
 			return await _firstracApiHelper.PostAsync<IPerson, APIOperationResult<bool>>("api/person", model);
+		}
+
+		Task<IAPIOperationResult<IEnumerable<IPerson>>> IStoreBase<IPerson>.GetAll(bool? activeOnly, Dictionary<string, object>? filterBy, bool? exactMatch, bool? mutuallyExclusive, bool? includeNavigationProperties)
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion
