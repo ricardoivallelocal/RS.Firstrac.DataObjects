@@ -46,12 +46,12 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 			_firstracApiHelper = firstracApiHelper;
 		}
 
-		public async Task<IAPIOperationResult<IPerson>> Get(int id)
+		public async Task<IAPIOperationResult<IPerson>> GetById(int id)
 		{
 			return await _firstracApiHelper.GetAsync<APIOperationResult<IPerson>>($"api/person/{id}");
 		}
 
-		public async Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAll()
+		public async Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAllPersons()
 		{
 			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IPerson>>>($"api/person/");
 		}
@@ -62,6 +62,11 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 		}
 
 		Task<IAPIOperationResult<IEnumerable<IPerson>>> IStoreBase<IPerson>.GetAll(bool? activeOnly, Dictionary<string, object>? filterBy, bool? exactMatch, bool? mutuallyExclusive, bool? includeNavigationProperties)
+		{
+			throw new NotImplementedException();
+		}
+
+		Task<IAPIOperationResult<IPerson>> IStoreBase<IPerson>.Get(int id)
 		{
 			throw new NotImplementedException();
 		}

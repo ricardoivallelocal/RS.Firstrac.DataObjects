@@ -24,12 +24,12 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
 		/// </summary>
 		/// <param name="id">The identifier.</param>
 		/// <returns>Task&lt;IAPIOperationResult&lt;TInterface&gt;&gt;.</returns>
-		Task<IAPIOperationResult<IPerson>> Get(int id);
+		Task<IAPIOperationResult<IPerson>> GetById(int id);
 		/// <summary>
 		/// Gets all.
 		/// </summary>
 		/// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>
-		Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAll();
+		Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAllPersons();
 		/// <summary>
 		/// Saves the specified model.
 		/// </summary>
