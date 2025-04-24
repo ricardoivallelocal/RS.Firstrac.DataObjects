@@ -47,7 +47,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 
 		public async Task<IAPIOperationResult<IEnumerable<ICompany>>> GetAll()
 		{
-			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<ICompany>>>($"api/companies");
+			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<ICompany>>>($"api/company");
 		}
 
 		public async Task<IAPIOperationResult<bool>> Save(ICompany model)
@@ -57,7 +57,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 
 		public async Task<IAPIOperationResult<ICompany>> Get(int id)
 		{
-			return await _firstracApiHelper.GetAsync<APIOperationResult<ICompany>>($"api/company/company/{id}");
+			return await _firstracApiHelper.GetAsync<APIOperationResult<ICompany>>($"api/company/{id}");
 		}
 
 		Task<IAPIOperationResult<IEnumerable<ICompany>>> IStoreBase<ICompany>.GetAll(bool? activeOnly, Dictionary<string, object>? filterBy, bool? exactMatch, bool? mutuallyExclusive, bool? includeNavigationProperties)

@@ -53,7 +53,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 
 		public async Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAll()
 		{
-			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IPerson>>>($"api/person/persons");
+			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IPerson>>>($"api/person/");
 		}
 
 		public async Task<IAPIOperationResult<bool>> Save(IPerson model)
