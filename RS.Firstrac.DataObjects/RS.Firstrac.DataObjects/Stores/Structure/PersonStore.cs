@@ -48,12 +48,12 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 
 		public async Task<IAPIOperationResult<IPerson>> GetById(int id)
 		{
-			return await _firstracApiHelper.GetAsync<APIOperationResult<IPerson>>($"api/person/{id}");
+			return await _firstracApiHelper.GetAsync<APIOperationResult<IPerson>>("api/person/{id}", id);
 		}
 
 		public async Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAllPersons()
 		{
-			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IPerson>>>($"api/person/");
+			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IPerson>>>("api/person/", null);
 		}
 
 		public async Task<IAPIOperationResult<bool>> Save(IPerson model)
