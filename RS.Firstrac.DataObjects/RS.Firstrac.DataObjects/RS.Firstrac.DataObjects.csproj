@@ -20,7 +20,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="RS.Common.Data.API.AspNet6" Version="2023.8.2.4" />
     <PackageReference Include="RS.Common.Data.API6" Version="2023.8.2.2" />
-    <PackageReference Include="RS.Firstrac.BusinessObjects" Version="2025.4.24.1" />
+    <PackageReference Include="RS.Firstrac.BusinessObjects" Version="2025.4.25.2" />
   </ItemGroup>
 
 
