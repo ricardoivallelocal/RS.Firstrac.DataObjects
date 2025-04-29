@@ -4,7 +4,7 @@
 // Created          : 4/11/2025 3:54:54 PM
 //
 // Last Modified By : Michael Quinn
-// Last Modified On : 4/11/2025 3:54:54 PM
+// Last Modified On : 4/29/2025 3:54:54 PM
 // ***********************************************************************
 // <copyright file="IContactAddressStore.cs" company="EdgeCo Holdings, Inc.">
 //     Copyright (c) 2025 EdgeCo Holdings, Inc. All rights reserved.
@@ -13,6 +13,7 @@
 // ***********************************************************************
 using RS.Common.Data.API6.Interfaces.Generic;
 using RS.Firstrac.BusinessObjects.Models.Structure.Interfaces;
+using RS.Firstrac.DataObjects.Stores.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,19 +22,29 @@ using System.Threading.Tasks;
 
 namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
 {
-    public interface IContactAddressStore
-    {
+    public interface IContactAddressStore : IStoreBase<IContactAddress>
+	{
+		/// <summary>
+		/// Deletes the specified identifier.
+		/// </summary>
+		/// <param name="id">The identifier.</param>
+		/// <returns>Task&lt;IAPIOperationResult&lt;System.Boolean&gt;&gt;.</returns>
+
+		Task<IAPIOperationResult<bool>> Delete(int id, string deletedBy);
 		/// <summary>
 		/// Gets the specified identifier.
 		/// </summary>
 		/// <param name="id">The identifier.</param>
 		/// <returns>Task&lt;IAPIOperationResult&lt;TInterface&gt;&gt;.</returns>
+
 		Task<IAPIOperationResult<IContactAddress>> Get(int id);
+
 		/// <summary>
 		/// Gets all.
 		/// </summary>
-		/// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>
-		Task<IAPIOperationResult<IEnumerable<IContactAddress>>> GetAll();
+		/// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>       
+		Task<IAPIOperationResult<IEnumerable<IContactAddress>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true);
+
 		/// <summary>
 		/// Saves the specified model.
 		/// </summary>
