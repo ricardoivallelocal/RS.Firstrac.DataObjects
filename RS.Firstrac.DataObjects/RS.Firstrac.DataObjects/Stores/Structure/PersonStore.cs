@@ -4,7 +4,7 @@
 // Created          : 4/11/2025 3:45:56 PM
 //
 // Last Modified By : Michael Quinn
-// Last Modified On : 4/29/2025 3:45:56 PM
+// Last Modified On : 4/30/2025 3:45:56 PM
 // ***********************************************************************
 // <copyright file="PersonStore.cs" company="EdgeCo Holdings, Inc.">
 //     Copyright (c) 2025 EdgeCo Holdings, Inc. All rights reserved.
@@ -100,7 +100,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 		/// <returns>IAPIOperationResult&lt;IPerson&gt;.</returns>
 		public async Task<IAPIOperationResult<IPerson>> Get(int id)
 		{
-			return await _firstracApiHelper.GetAsync<APIOperationResult<IPerson>>($"api/product/{id}");
+			return await _firstracApiHelper.GetAsync<APIOperationResult<IPerson>>($"api/person/{id}");
 		}
 
 
