@@ -1,4 +1,5 @@
 ﻿using RS.Common.Data.API6.Interfaces.Generic;
+using RS.Firstrac.BusinessObjects.Models.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Structure;
 using RS.Firstrac.BusinessObjects.Models.Structure.Interfaces;
 using RS.Firstrac.DataObjects.Stores.Interfaces;
@@ -51,6 +52,14 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
         /// <param name="feeGroupAccountId">The fee group account identifier.</param>
         /// <returns></returns>
         Task<IAPIOperationResult<bool>> Close(int feeGroupAccountId);
+
+        /// <summary>
+        /// Gets the templates for dropdown.
+        /// </summary>
+        /// <param name="searchPattern">The search pattern.</param>
+        /// <param name="activeOnly">if set to <c>true</c> [active only].</param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetTemplatesForDropdown(string searchPattern, bool activeOnly);
         #endregion
     }
 }
