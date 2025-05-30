@@ -18,17 +18,18 @@ using RS.Firstrac.BusinessObjects.Models.Structure.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Structure;
 using RS.Firstrac.DataObjects.ApiIHelper;
 using RS.Firstrac.DataObjects.Stores.Structure.Interfaces;
+using RS.Firstrac.DataObjects.Stores.Interfaces;
 
 namespace RS.Firstrac.DataObjects.Stores.Structure
 {
 	/// <summary>
 	/// The class purpose is what.
 	/// </summary>
-	public class PersonRoleAccountStore : IPersonRoleAccountStore
+	public class PersonRoleAccountStore : StoreBase, IPersonRoleAccountStore
 	{
 		private readonly IFirstracApiHelper _firstracApiHelper;
 
-		public PersonRoleAccountStore(IFirstracApiHelper firstracApiHelper)
+		public PersonRoleAccountStore(IFirstracApiHelper firstracApiHelper) : base(firstracApiHelper)
 		{
 			_firstracApiHelper = firstracApiHelper;
 		}
@@ -42,5 +43,19 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<PersonRoleAccount>>>("api/personroleaccount/GetPersonRoleAccounts/{0}", companyId);
 		}
 
+		public Task<IAPIOperationResult<bool>> Save(IPersonRoleAccount model)
+		{
+			throw new NotImplementedException();
+		}
+
+		Task<IAPIOperationResult<IPersonRoleAccount>> IStoreBase<IPersonRoleAccount>.Get(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		Task<IAPIOperationResult<IEnumerable<IPersonRoleAccount>>> IStoreBase<IPersonRoleAccount>.GetAll(bool? activeOnly, Dictionary<string, object>? filterBy, bool? exactMatch, bool? mutuallyExclusive, bool? includeNavigationProperties)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
