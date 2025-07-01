@@ -16,6 +16,10 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
 
 		Task<IAPIOperationResult<IEnumerable<IPersonRoleAccount>>> GetPersonRoleAccounts(int companyId);
 
+		Task<IAPIOperationResult<IEnumerable<IPersonRoleAccount>>> GetCompanyRoleAccounts(int personId);
+
+		Task<IAPIOperationResult<IEnumerable<IPersonRoleAccount>>> GetAccountRoles(int feeGroupAccountId);
+
 		#endregion
 	}
 }

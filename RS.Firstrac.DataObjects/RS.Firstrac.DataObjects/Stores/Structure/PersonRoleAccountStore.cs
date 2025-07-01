@@ -34,6 +34,16 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 			_firstracApiHelper = firstracApiHelper;
 		}
 
+		public async Task<IAPIOperationResult<IEnumerable<IPersonRoleAccount>>> GetAccountRoles(int feeGroupAccountId)
+		{
+			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<PersonRoleAccount>>>("api/personroleaccount/GetAccountRoes/{0}", feeGroupAccountId);
+		}
+
+		public async Task<IAPIOperationResult<IEnumerable<IPersonRoleAccount>>> GetCompanyRoleAccounts(int personId)
+		{
+			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<PersonRoleAccount>>>("api/personroleaccount/GetCompanyRoleAccounts/{0}", personId);
+		}
+
 		/// <summary>
 		/// Retrieves all person role accounts.
 		/// </summary>
