@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RS.Firstrac.DataObjects", "RS.Firstrac.DataObjects\RS.Firstrac.DataObjects.csproj", "{49477C89-8404-4AEF-8D3A-E5F9957DD553}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RS.Firstrac.DataObjects.Tests", "RS.Firstrac.DataObjects.Tests\RS.Firstrac.DataObjects.Tests.csproj", "{A8E2DF74-8E50-4FAD-9721-BB79B2DAECF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{49477C89-8404-4AEF-8D3A-E5F9957DD553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49477C89-8404-4AEF-8D3A-E5F9957DD553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49477C89-8404-4AEF-8D3A-E5F9957DD553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8E2DF74-8E50-4FAD-9721-BB79B2DAECF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E2DF74-8E50-4FAD-9721-BB79B2DAECF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E2DF74-8E50-4FAD-9721-BB79B2DAECF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E2DF74-8E50-4FAD-9721-BB79B2DAECF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -23,12 +29,15 @@ Global
 		SolutionGuid = {62742D6D-E354-49A6-9BDE-36D6EDDB6AC7}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://dev.azure.com/unifiedtrust
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = RS.Firstrac.DataObjects\\RS.Firstrac.DataObjects.csproj
 		SccProjectName1 = RS.Firstrac.DataObjects
 		SccLocalPath1 = RS.Firstrac.DataObjects
+		SccProjectUniqueName2 = RS.Firstrac.DataObjects.Tests\\RS.Firstrac.DataObjects.Tests.csproj
+		SccProjectName2 = RS.Firstrac.DataObjects.Tests
+		SccLocalPath2 = RS.Firstrac.DataObjects.Tests
 	EndGlobalSection
 EndGlobal
