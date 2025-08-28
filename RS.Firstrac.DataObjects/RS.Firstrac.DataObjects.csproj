@@ -17,10 +17,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="RS.Firstrac.DataObjects\**" />
+    <EmbeddedResource Remove="RS.Firstrac.DataObjects\**" />
+    <None Remove="RS.Firstrac.DataObjects\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="RS.Common.Data.API.AspNet6" Version="2023.8.2.4" />
     <PackageReference Include="RS.Common.Data.API6" Version="2023.8.2.2" />
-    <PackageReference Include="RS.Firstrac.BusinessObjects" Version="2025.8.24.3-preview1" />
+    <PackageReference Include="RS.Firstrac.BusinessObjects" Version="2025.8.28.1-local" />
   </ItemGroup>
 
 
