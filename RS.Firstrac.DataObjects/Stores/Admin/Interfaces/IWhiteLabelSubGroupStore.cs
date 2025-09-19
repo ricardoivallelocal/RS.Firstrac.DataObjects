@@ -14,6 +14,7 @@
 using RS.Firstrac.BusinessObjects.Models.Admin.Interfaces;
 using RS.Firstrac.DataObjects.Stores.Interfaces;
 using RS.Common.Data.API6.Interfaces.Generic;
+using RS.Firstrac.BusinessObjects.Models.Interfaces;
 
 namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
 {
@@ -42,7 +43,7 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         /// Gets all.
         /// </summary>
         /// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>
-        Task<IAPIOperationResult<IEnumerable<IWhiteLabelSubGroup>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true);
+        Task<IAPIOperationResult<IEnumerable<IWhiteLabelSubGroup>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object> dependencies = null);
         /// <summary>
         /// Saves the specified model.
         /// </summary>
@@ -50,6 +51,14 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         /// <returns>Task&lt;IAPIOperationResult&lt;System.Boolean&gt;&gt;.</returns>
         Task<IAPIOperationResult<bool>> Save(IWhiteLabelSubGroup model);
 
+        /// <summary>
+        /// Gets for dropdown by white label external identifier.
+        /// </summary>
+        /// <param name="filterBy">The filter by.</param>
+        /// <param name="exactMatch">if set to <c>true</c> [exact match].</param>
+        /// <param name="dependencies">The dependencies.</param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdownByWhiteLabelExternalId(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object> dependencies = null);
         #endregion
     }
 }

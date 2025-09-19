@@ -3,8 +3,11 @@ using RS.Common.Data.API6.Interfaces.Generic;
 using RS.Firstrac.BusinessObjects.Models.Admin.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.DigitalAdministration.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Interfaces;
+using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
+using RS.Firstrac.BusinessObjects.Models.Requests;
 using RS.Firstrac.DataObjects.ApiIHelper;
 using RS.Firstrac.DataObjects.Stores.DigitalAdministration.Interfaces;
+using RS.Firstrac.DataObjects.Stores.Interfaces;
 
 namespace RS.Firstrac.DataObjects.Stores.DigitalAdministration
 {
@@ -73,7 +76,7 @@ namespace RS.Firstrac.DataObjects.Stores.DigitalAdministration
         /// Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.
         /// </returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public Task<IAPIOperationResult<IEnumerable<IWhiteLabelPartnerInfo>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true)
+        public Task<IAPIOperationResult<IEnumerable<IWhiteLabelPartnerInfo>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string, object>? dependencies = null)
         {
             throw new NotImplementedException();
         }
@@ -102,14 +105,12 @@ namespace RS.Firstrac.DataObjects.Stores.DigitalAdministration
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Retrieves all account numbers that are active
-        /// </summary>
-        /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAssetGroupCusipLink&gt;&gt;.</returns>
-        public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false)
+        public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
         {
-            return await _firstracApiHelper.PostAsync<Dictionary<string, object>, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/DigitalAdministration/dropdownItems?exactMatch={exactMatch}", filterBy);
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/DigitalAdministration/dropdownItems", request);
         }
+
         #endregion
     }
 }

@@ -2,7 +2,6 @@
 using RS.Common.Data.API6.Interfaces.Generic;
 using RS.Firstrac.BusinessObjects.Models.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
-using RS.Firstrac.BusinessObjects.Models.Invoice.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Lookup.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Requests;
 using RS.Firstrac.DataObjects.ApiIHelper;
@@ -10,9 +9,13 @@ using RS.Firstrac.DataObjects.Stores.Lookup.Interfaces;
 
 namespace RS.Firstrac.DataObjects.Stores.Lookup
 {
-    public class AccountTypeStore : StoreBase, IAccountTypeStore
+    /// <summary>
+    /// Class InvoiceEventStore.
+    /// Implements the <see cref="IInvoiceEventStore" />
+    /// </summary>
+    /// <seealso cref="IInvoiceEventStore" />
+    public class InvoiceEventStore : StoreBase, IInvoiceEventStore
     {
-
         #region Private Member Variables
 
         /// <summary>
@@ -25,10 +28,10 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountTypeStore"/> class.
+        /// Initializes a new instance of the <see cref="InvoiceEventStore"/> class.
         /// </summary>
         /// <param name="firstracApiHelper">The firstrac API helper.</param>
-        public AccountTypeStore(IFirstracApiHelper firstracApiHelper) : base(firstracApiHelper)
+        public InvoiceEventStore(IFirstracApiHelper firstracApiHelper) : base(firstracApiHelper)
         {
             _firstracApiHelper = firstracApiHelper;
         }
@@ -36,26 +39,23 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup
 
         #endregion
 
-
         #region Public Methods
         /// <summary>
         /// Retrieves all account numbers that are active
         /// </summary>
-        /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAccountType&gt;&gt;.</returns>
-        public async Task<IAPIOperationResult<IEnumerable<IAccountType>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null)
+        /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IInvoiceEvent&gt;&gt;.</returns>
+        public async Task<IAPIOperationResult<IEnumerable<IInvoiceEvent>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null)
         {
             if (filterBy?.Any() ?? false)
             {
                 var request = GetAllRequest.Build(activeOnly ?? true, filterBy, exactMatch ?? true, mutuallyExclusive ?? false, includeNavigationProperties ?? true, null, false, dependencies);
-                return await _firstracApiHelper.PostAsync<IGetAllRequest, APIOperationResult<IEnumerable<IAccountType>>>($"api/AccountType/filteredBy", request);
-               
+                return await _firstracApiHelper.PostAsync<IGetAllRequest, APIOperationResult<IEnumerable<IInvoiceEvent>>>($"api/InvoiceEvent/filteredBy", request);               
             }
            
             else
-                return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IAccountType>>>($"api/AccountType?activeOnly={activeOnly}&includeAllNavigationProperties={includeNavigationProperties}");
-
-
+                return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IInvoiceEvent>>>($"api/InvoiceEvent?activeOnly={activeOnly}&includeAllNavigationProperties={includeNavigationProperties}");
         }
+
 
         /// <summary>
         /// Retrieves all account numbers that are active
@@ -64,18 +64,17 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup
         public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string,object>? dependencies = null)
         {
             var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
-            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/AccountType/dropdownItems", request);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/InvoiceEvent/dropdownItems", request);
         }
-
 
         /// <summary>
         /// Saves the specified model.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>IAPIOperationResult&lt;System.Boolean&gt;.</returns>
-        public async Task<IAPIOperationResult<bool>> Save(IAccountType model)
+        public async Task<IAPIOperationResult<bool>> Save(IInvoiceEvent model)
         {
-            return await _firstracApiHelper.PostAsync<IAccountType, APIOperationResult<bool>>("api/AccountType", model);
+            return await _firstracApiHelper.PostAsync<IInvoiceEvent, APIOperationResult<bool>>("api/InvoiceEvent", model);
         }
 
         /// <summary>
@@ -85,30 +84,19 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup
         /// <returns>IAPIOperationResult&lt;System.Boolean&gt;.</returns>
         public async Task<IAPIOperationResult<bool>> Delete(int id, string deletedBy)
         {
-            return await _firstracApiHelper.DeleteAsync<APIOperationResult<bool>>($"api/AccountType/{id}?deletedBy={deletedBy}");
+            return await _firstracApiHelper.DeleteAsync<APIOperationResult<bool>>($"api/InvoiceEvent/{id}?deletedBy={deletedBy}");
         }
 
         /// <summary>
         /// Gets the specified identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <returns>IAPIOperationResult&lt;IAccountType&gt;.</returns>
-        public async Task<IAPIOperationResult<IAccountType>> Get(int id)
+        /// <returns>IAPIOperationResult&lt;IInvoiceEvent&gt;.</returns>
+        public async Task<IAPIOperationResult<IInvoiceEvent>> Get(int id)
         {
-            return await _firstracApiHelper.GetAsync<APIOperationResult<IAccountType>>("api/AccountType/{id}", id);
-        }
-
-        /// <summary>
-        /// Gets the by asset group identifier.
-        /// </summary>
-        /// <param name="assetGroupId">The asset group identifier.</param>
-        /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAccountType&gt;&gt;.</returns>
-        public async Task<IAPIOperationResult<IEnumerable<IAccountType>>> GetByAssetGroupId(int assetGroupId)
-        {
-            return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IAccountType>>>("api/AccountType/assetGroupId/{assetGroupId}", assetGroupId);
+            return await _firstracApiHelper.GetAsync<APIOperationResult<IInvoiceEvent>>("api/InvoiceEvent/{id}", id);
         }
 
         #endregion
-
     }
 }

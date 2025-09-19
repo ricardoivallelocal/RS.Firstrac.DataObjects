@@ -63,7 +63,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 			throw new NotImplementedException();
 		}
 
-		Task<IAPIOperationResult<IEnumerable<IPersonRoleAccount>>> IStoreBase<IPersonRoleAccount>.GetAll(bool? activeOnly, Dictionary<string, object>? filterBy, bool? exactMatch, bool? mutuallyExclusive, bool? includeNavigationProperties)
+		Task<IAPIOperationResult<IEnumerable<IPersonRoleAccount>>> IStoreBase<IPersonRoleAccount>.GetAll(bool? activeOnly, Dictionary<string, object>? filterBy, bool? exactMatch, bool? mutuallyExclusive, bool? includeNavigationProperties, Dictionary<string,object> dependencies=null)
 		{
 			throw new NotImplementedException();
 		}

@@ -5,6 +5,8 @@ using RS.Firstrac.BusinessObjects.Models.Structure.Interfaces;
 using RS.Firstrac.DataObjects.Stores.Structure.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Product.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Interfaces;
+using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
+using RS.Firstrac.BusinessObjects.Models.Requests;
 
 namespace RS.Firstrac.DataObjects.Stores.Structure
 {
@@ -43,10 +45,14 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
         /// Retrieves all account numbers that are active
         /// </summary>
         /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IFeeGroup&gt;&gt;.</returns>
-        public async Task<IAPIOperationResult<IEnumerable<IFeeGroup>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true)
+        public async Task<IAPIOperationResult<IEnumerable<IFeeGroup>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null)
         {
             if (filterBy?.Any() ?? false)
-                return await _firstracApiHelper.PostAsync<Dictionary<string, object>, APIOperationResult<IEnumerable<IFeeGroup>>>($"api/FeeGroup/filteredBy?activeOnly={activeOnly}&exactMatch={exactMatch}&mutuallyExclusive={mutuallyExclusive}&includeAllNavigationProperties={includeNavigationProperties}", filterBy);
+            {
+                var request = GetAllRequest.Build(activeOnly ?? true, filterBy, exactMatch ?? true, mutuallyExclusive ?? false, includeNavigationProperties ?? true, null, false, dependencies);
+                return await _firstracApiHelper.PostAsync<IGetAllRequest, APIOperationResult<IEnumerable<IFeeGroup>>>($"api/FeeGroup/filteredBy", request);               
+            }
+           
             else
                 return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IFeeGroup>>>($"api/FeeGroup?activeOnly={activeOnly}&includeAllNavigationProperties={includeNavigationProperties}");
         }
@@ -55,11 +61,26 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
         /// Retrieves all account numbers that are active
         /// </summary>
         /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAssetGroupCusipLink&gt;&gt;.</returns>
-        public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false)
+        public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string,object>? dependencies = null)
         {
-            return await _firstracApiHelper.PostAsync<Dictionary<string, object>, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroup/dropdownItems?exactMatch={exactMatch}", filterBy);
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroup/dropdownItems", request);
         }
 
+
+        /// <summary>
+        /// Gets for dropdown by white label sub group ids.
+        /// </summary>
+        /// <param name="filterBy">The filter by.</param>
+        /// <param name="exactMatch">if set to <c>true</c> [exact match].</param>
+        /// <param name="dependencies">The dependencies.</param>
+        /// <returns></returns>
+        public async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdownByWhiteLabelSubGroupIds(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
+        {
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroup/dropdownItemsByWhiteLabelSubGroupIds", request);
+        }
+        
         /// <summary>
         /// Saves the specified model.
         /// </summary>

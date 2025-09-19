@@ -32,7 +32,7 @@ namespace RS.Firstrac.DataObjects.Stores.Product.Interfaces
         /// </summary>
         /// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>
         
-        Task<IAPIOperationResult<IEnumerable<IProductFeeScheduleDefault>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true);
+        Task<IAPIOperationResult<IEnumerable<IProductFeeScheduleDefault>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null);
         /// <summary>
         /// Saves the specified model.
         /// </summary>

@@ -15,7 +15,9 @@ using Microsoft.Extensions.Logging;
 using RS.Common.Data.API6.Generic;
 using RS.Common.Data.API6.Interfaces.Generic;
 using RS.Firstrac.BusinessObjects.Models.Interfaces;
+using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
 using RS.Firstrac.BusinessObjects.Models.Lookup.Interfaces;
+using RS.Firstrac.BusinessObjects.Models.Requests;
 using RS.Firstrac.DataObjects.ApiIHelper;
 using RS.Firstrac.DataObjects.Stores.Lookup.Interfaces;
 
@@ -53,10 +55,15 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup
 		/// Retrieves all contact roles that are active
 		/// </summary>
 		/// <returns>IAPIOperationResult&lt;IEnumerable&lt;IContactRole&gt;&gt;.</returns>
-		public async Task<IAPIOperationResult<IEnumerable<IContactRole>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true)
+		public async Task<IAPIOperationResult<IEnumerable<IContactRole>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null)
 		{
 			if (filterBy?.Any() ?? false)
-				return await _firstracApiHelper.PostAsync<Dictionary<string, object>, APIOperationResult<IEnumerable<IContactRole>>>($"api/contactrole/filteredBy?activeOnly={activeOnly}&exactMatch={exactMatch}&mutuallyExclusive={mutuallyExclusive}&includeAllNavigationProperties={includeNavigationProperties}", filterBy);
+			{
+                var request = GetAllRequest.Build(activeOnly ?? true, filterBy, exactMatch ?? true, mutuallyExclusive ?? false, includeNavigationProperties ?? true, null, false, dependencies);
+                return await _firstracApiHelper.PostAsync<IGetAllRequest, APIOperationResult<IEnumerable<IContactRole>>>($"api/contactrole/filteredBy", request);
+                
+            }
+           
 			else
 				return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IContactRole>>>($"api/contactrole?activeOnly={activeOnly}&includeAllNavigationProperties={includeNavigationProperties}");
 
@@ -67,9 +74,10 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup
 		/// Retrieves all contact roles that are active
 		/// </summary>
 		/// <returns>IAPIOperationResult&lt;IEnumerable&lt;IContactRole&gt;&gt;.</returns>
-		public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false)
+		public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string,object>? dependencies = null)
 		{
-			return await _firstracApiHelper.PostAsync<Dictionary<string, object>, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/contactrole/dropdownItems?exactMatch={exactMatch}", filterBy);
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/contactrole/dropdownItems", request);
 		}
 
 

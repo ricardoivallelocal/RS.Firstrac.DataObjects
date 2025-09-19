@@ -32,7 +32,7 @@ namespace RS.Firstrac.DataObjects.Stores
 
         #region Methods
 
-        public virtual async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false)
+        public virtual async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
         {
             throw new NotImplementedException();
         }
@@ -47,7 +47,7 @@ namespace RS.Firstrac.DataObjects.Stores
             throw new NotImplementedException();
         }
 
-        public virtual async Task<IAPIOperationResult<IEnumerable<IValidate>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy, bool? exactMatch, bool? mutuallyExclusive, bool? includeNavigationProperties)
+        public virtual async Task<IAPIOperationResult<IEnumerable<IValidate>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy, bool? exactMatch, bool? mutuallyExclusive, bool? includeNavigationProperties, Dictionary<string, object>? dependencies = null)
         {
             throw new NotImplementedException();
         }

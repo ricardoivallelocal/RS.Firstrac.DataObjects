@@ -15,7 +15,9 @@ using Microsoft.Extensions.Logging;
 using RS.Common.Data.API6.Generic;
 using RS.Common.Data.API6.Interfaces.Generic;
 using RS.Firstrac.BusinessObjects.Models.Interfaces;
+using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
 using RS.Firstrac.BusinessObjects.Models.Product.Interfaces;
+using RS.Firstrac.BusinessObjects.Models.Requests;
 using RS.Firstrac.BusinessObjects.Models.Structure.Interfaces;
 using RS.Firstrac.DataObjects.ApiIHelper;
 using RS.Firstrac.DataObjects.Stores.Interfaces;
@@ -54,20 +56,25 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
 		/// Retrieves all account numbers that are active
 		/// </summary>
 		/// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAssetGroupCusipLink&gt;&gt;.</returns>
-		public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false)
+		public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string,object>? dependencies = null)
 		{
-
-			return await _firstracApiHelper.PostAsync<Dictionary<string, object>, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/person/dropdownItems?exactMatch={exactMatch}", filterBy);
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/person/dropdownItems", request);
 		}
 
 		/// <summary>
 		/// Retrieves all account numbers that are active
 		/// </summary>
 		/// <returns>IAPIOperationResult&lt;IEnumerable&lt;IProduct&gt;&gt;.</returns>
-		public async Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true)
+		public async Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null)
 		{
 			if (filterBy?.Any() ?? false)
-				return await _firstracApiHelper.PostAsync<Dictionary<string, object>, APIOperationResult<IEnumerable<IPerson>>>($"api/person/filteredBy?activeOnly={activeOnly}&exactMatch={exactMatch}&mutuallyExclusive={mutuallyExclusive}&includeAllNavigationProperties={includeNavigationProperties}", filterBy);
+			{
+                var request = GetAllRequest.Build(activeOnly ?? true, filterBy, exactMatch ?? true, mutuallyExclusive ?? false, includeNavigationProperties ?? true, null, false, dependencies);
+                return await _firstracApiHelper.PostAsync<IGetAllRequest, APIOperationResult<IEnumerable<IPerson>>>($"api/person/filteredBy", request);
+                 
+            }
+
 			else
 				return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IPerson>>>($"api/person?activeOnly={activeOnly}&includeAllNavigationProperties={includeNavigationProperties}");
 

@@ -31,7 +31,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
         /// Gets all.
         /// </summary>
         /// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>
-        Task<IAPIOperationResult<IEnumerable<IFeeGroupAccount>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true);
+        Task<IAPIOperationResult<IEnumerable<IFeeGroupAccount>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null);
         /// <summary>
         /// Saves the specified model.
         /// </summary>
@@ -60,6 +60,17 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
         /// <param name="activeOnly">if set to <c>true</c> [active only].</param>
         /// <returns></returns>
         Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetTemplatesForDropdown(string searchPattern, bool activeOnly);
+
+        /// <summary>
+        /// Gets for dropdown by white label sub groups and fee group.
+        /// </summary>
+        /// <param name="searchPattern">The search pattern.</param>
+        /// <param name="activeOnly">if set to <c>true</c> [active only].</param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdownByWhiteLabelSubGroupsAndFeeGroup(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
+
+
+
         #endregion
     }
 }

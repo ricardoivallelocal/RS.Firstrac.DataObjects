@@ -39,7 +39,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
 		/// Gets all.
 		/// </summary>
 		/// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>       
-		Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true);
+		Task<IAPIOperationResult<IEnumerable<IPerson>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null);
 
 		/// <summary>
 		/// Saves the specified model.

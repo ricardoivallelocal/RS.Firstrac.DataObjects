@@ -41,7 +41,7 @@ namespace RS.Firstrac.DataObjects.Stores.ProductFeeScheduleDefault
         /// Retrieves all account numbers that are active
         /// </summary>
         /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IProductFeeScheduleDefault&gt;&gt;.</returns>
-        public async Task<IAPIOperationResult<IEnumerable<IProductFeeScheduleDefault>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true)
+        public async Task<IAPIOperationResult<IEnumerable<IProductFeeScheduleDefault>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null)
         {
             return await
                 _firstracApiHelper.

@@ -32,7 +32,7 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup.Interfaces
         /// </summary>
         /// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>
 
-        Task<IAPIOperationResult<IEnumerable<IAssetGroup>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true);
+        Task<IAPIOperationResult<IEnumerable<IAssetGroup>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null);
         /// <summary>
         /// Saves the specified model.
         /// </summary>
@@ -46,7 +46,7 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup.Interfaces
         /// <param name="filterBy">The filter by.</param>
         /// <param name="exactMatch">if set to <c>true</c> [exact match].</param>
         /// <returns></returns>
-        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false);
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string,object>? dependencies = null);
         #endregion
     }
 }
