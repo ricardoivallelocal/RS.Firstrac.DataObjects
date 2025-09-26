@@ -56,6 +56,16 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
         {
             return await _firstracApiHelper.PostAsync<ISingleInvoiceRequest, APIOperationResult<int>>($"api/invoiceGeneration/single/", request);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<IAPIOperationResult<bool>> Void(IVoidInvoiceRequest request)
+        {
+            return await _firstracApiHelper.PostAsync<IVoidInvoiceRequest, APIOperationResult<bool>>($"api/invoiceGeneration/void/", request);
+        }
         #endregion
     }
 }

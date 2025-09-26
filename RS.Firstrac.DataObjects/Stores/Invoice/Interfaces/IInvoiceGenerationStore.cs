@@ -25,6 +25,14 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice.Interfaces
         /// <param name="request"></param>
         /// <returns></returns>
         Task<IAPIOperationResult<int>> Single(ISingleInvoiceRequest request);
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<bool>> Void(IVoidInvoiceRequest request);
         #endregion
     }
 }
