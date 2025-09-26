@@ -52,9 +52,9 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<IAPIOperationResult<int>> Single(ISingleInvoiceRequest request)
+        public async Task<IAPIOperationResult<ISingleInvoiceResponse>> Single(ISingleInvoiceRequest request)
         {
-            return await _firstracApiHelper.PostAsync<ISingleInvoiceRequest, APIOperationResult<int>>($"api/invoiceGeneration/single/", request);
+            return await _firstracApiHelper.PostAsync<ISingleInvoiceRequest, APIOperationResult<ISingleInvoiceResponse>>($"api/invoiceGeneration/single/", request);
         }
 
         /// <summary>
