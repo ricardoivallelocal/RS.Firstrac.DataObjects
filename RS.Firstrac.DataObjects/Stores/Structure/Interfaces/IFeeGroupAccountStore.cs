@@ -70,6 +70,12 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
         Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdownByWhiteLabelSubGroupsAndFeeGroup(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
 
 
+        /// <summary>
+        /// Saves the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Task&lt;IAPIOperationResult&lt;System.Boolean&gt;&gt;.</returns>
+        Task<IAPIOperationResult<int?>> Create(IFeeGroupAccountAddRequest request);
 
         #endregion
     }
