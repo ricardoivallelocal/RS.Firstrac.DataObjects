@@ -7,6 +7,7 @@ using RS.Firstrac.BusinessObjects.Models.Structure;
 using RS.Firstrac.BusinessObjects.Models.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
 using RS.Firstrac.BusinessObjects.Models.Requests;
+using System.Reflection;
 
 namespace RS.Firstrac.DataObjects.Stores.Structure
 {
@@ -146,6 +147,11 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
         {
             var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
             return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroupAccount/dropdownItemsByWhiteLabelSubGroupsAndFeeGroup", request);
+        }
+
+        public async Task<IAPIOperationResult<int?>> Create(IFeeGroupAccountAddRequest request)
+        {
+            return await _firstracApiHelper.PostAsync<IFeeGroupAccountAddRequest, APIOperationResult<int?>>("api/FeeGroupAccount/create", request);
         }
         #endregion
     }
