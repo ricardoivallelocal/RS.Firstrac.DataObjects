@@ -13,10 +13,9 @@
 // ***********************************************************************
 using RS.Common.Data.API6.Generic;
 using RS.Common.Data.API6.Interfaces.Generic;
-using RS.Firstrac.BusinessObjects.Models.Admin.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.FileImport.Interfaces;
-using RS.Firstrac.BusinessObjects.Models.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
+using RS.Firstrac.BusinessObjects.Models.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Requests;
 using RS.Firstrac.DataObjects.ApiIHelper;
 using RS.Firstrac.DataObjects.Stores.Admin.Interfaces;
@@ -29,7 +28,7 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
     /// Implements the <see cref="IAssetGroupCusipLinkStore" />
     /// </summary>
     /// <seealso cref="IAssetGroupCusipLinkStore" />
-    public class PlanImportStore : StoreBase, IPlanImportStore
+    public class FileImportStore : StoreBase, IFileImportStore
     {
         #region Private Member Variables
 
@@ -46,7 +45,7 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
         /// Initializes a new instance of the <see cref="AssetGroupCusipLinkStore"/> class.
         /// </summary>
         /// <param name="firstracApiHelper">The firstrac API helper.</param>
-        public PlanImportStore(IFirstracApiHelper firstracApiHelper) : base(firstracApiHelper)
+        public FileImportStore(IFirstracApiHelper firstracApiHelper) : base(firstracApiHelper)
         {
             _firstracApiHelper = firstracApiHelper;
         }
@@ -76,6 +75,26 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
             throw new NotImplementedException();
         }
 
+        public async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetServiceDropdownItemsForFileImports(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
+        {
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/fileImport/serviceDropdownItems", request);
+
+        }
+
+        public async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetFeeItemDropdownItemsForFileImports(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
+        {
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/fileImport/feeItemDropdownItems", request);
+
+        }
+
+        public async Task<IAPIOperationResult<int?>> RunPlanImport(IPlanImportRequest request)
+        {
+             
+            return await _firstracApiHelper.PostAsync<IPlanImportRequest, APIOperationResult<int?>>($"api/fileImport/planImport", request);
+
+        }
         #endregion
     }
 }
