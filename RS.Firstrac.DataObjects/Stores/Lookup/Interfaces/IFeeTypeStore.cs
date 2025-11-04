@@ -1,4 +1,6 @@
 ﻿using RS.Common.Data.API6.Interfaces.Generic;
+using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
+using RS.Firstrac.BusinessObjects.Models.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Lookup.Interfaces;
 using RS.Firstrac.DataObjects.Stores.Interfaces;
 
@@ -38,6 +40,7 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup.Interfaces
         /// <param name="model">The model.</param>
         /// <returns>Task&lt;IAPIOperationResult&lt;System.Boolean&gt;&gt;.</returns>
         Task<IAPIOperationResult<bool>> Save(IFeeType model);
+
 
         #endregion
     }

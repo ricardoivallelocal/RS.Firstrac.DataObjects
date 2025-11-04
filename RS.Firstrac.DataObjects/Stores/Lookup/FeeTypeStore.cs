@@ -70,6 +70,7 @@ namespace RS.Firstrac.DataObjects.Stores.Lookup
             return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeType/dropdownItems", request);
         }
 
+
         /// <summary>
         /// Saves the specified model.
         /// </summary>
