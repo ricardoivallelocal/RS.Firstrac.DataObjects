@@ -24,7 +24,7 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
     /// Extends the <see cref="RS.Firstrac.DataObjects.Stores.Interfaces.IStoreBase{RS.Firstrac.BusinessObjects.Models.Admin.Interfaces.IAssetGroupCusipLink}" />
     /// </summary>
     /// <seealso cref="RS.Firstrac.DataObjects.Stores.Interfaces.IStoreBase{RS.Firstrac.BusinessObjects.Models.Admin.Interfaces.IAssetGroupCusipLink}" />
-    public interface IFileImportStore : IStoreBase<IPlanImportRequest>
+    public interface IImportsStore : IStoreBase<IImportRequestBase>
     {
         #region Methods
 
@@ -42,7 +42,7 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         /// <param name="exactMatch">if set to <c>true</c> [exact match].</param>
         /// <param name="dependencies">The dependencies.</param>
         /// <returns></returns>
-        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetServiceDropdownItemsForFileImports(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetServiceDropdownItemsForImports(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
 
         /// <summary>
         /// Gets the fee item dropdown items for file imports.
@@ -51,7 +51,7 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         /// <param name="exactMatch">if set to <c>true</c> [exact match].</param>
         /// <param name="dependencies">The dependencies.</param>
         /// <returns></returns>
-        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetFeeItemDropdownItemsForFileImports(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetFeeItemDropdownItemsForImports(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
 
         /// <summary>
         /// Runs the plan import.
@@ -59,6 +59,20 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         /// <param name="request">The request.</param>
         /// <returns></returns>
         Task<IAPIOperationResult<int?>> RunPlanImport(IPlanImportRequest request);
+
+        /// <summary>
+        /// Runs the file import.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<int?>> RunFileImport(IFileImportRequest request);
+
+        /// <summary>
+        /// Runs the file import.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<ICollection<IFileImportRequestItem>>> ValidateImportFile(IFileImportRequest request);
         #endregion
     }
 }
