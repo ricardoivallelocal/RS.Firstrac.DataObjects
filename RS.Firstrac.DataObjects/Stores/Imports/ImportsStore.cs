@@ -56,7 +56,7 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
         #endregion
 
         #region Public Methods
-        
+
 
         public async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetServiceDropdownItemsForImports(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
         {
@@ -80,9 +80,15 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
 
         }
 
+        public async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetFileImportSources(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
+        {
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/imports/fileImportSources/", request);
+
+        }
         public async Task<IAPIOperationResult<int?>> RunPlanImport(IPlanImportRequest request)
         {
-             
+
             return await _firstracApiHelper.PostAsync<IPlanImportRequest, APIOperationResult<int?>>($"api/imports/planImport/", request);
 
         }
@@ -101,7 +107,23 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
         /// <returns></returns>
         public async Task<IAPIOperationResult<ICollection<IFileImportRequestItem>>> ValidateImportFile(IFileImportRequest request)
         {
-            return await _firstracApiHelper.PostAsync<IFileImportRequest, APIOperationResult<ICollection<IFileImportRequestItem>>> ($"api/imports/validateImportFile/", request);
+            return await _firstracApiHelper.PostAsync<IFileImportRequest, APIOperationResult<ICollection<IFileImportRequestItem>>>($"api/imports/validateImportFile/", request);
+        }
+
+        public async Task<IAPIOperationResult<IEnumerable<IFileImportBatchDropdownItem>>> GetFileImportBatches(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
+        {
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IFileImportBatchDropdownItem>>>($"api/Imports/fileImportBatches", request);
+        }
+
+        public async Task<IAPIOperationResult<bool>> DeleteBatch(int batchId, string deletedBy)
+        {
+            return await _firstracApiHelper.DeleteAsync<APIOperationResult<bool>>($"api/Imports/Batch/{batchId}?deletedBy={deletedBy}");
+        }
+
+        public async Task<IAPIOperationResult<bool>> DeleteBatchItem(int batchDetailId, string deletedBy)
+        {
+            return await _firstracApiHelper.DeleteAsync<APIOperationResult<bool>>($"api/Imports/BatchItem/{batchDetailId}?deletedBy={deletedBy}");
         }
 
         Task<IAPIOperationResult<IImportRequestBase>> IStoreBase<IImportRequestBase>.Get(int id)

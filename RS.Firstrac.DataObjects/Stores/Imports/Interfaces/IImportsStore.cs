@@ -73,6 +73,41 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         /// <param name="request">The request.</param>
         /// <returns></returns>
         Task<IAPIOperationResult<ICollection<IFileImportRequestItem>>> ValidateImportFile(IFileImportRequest request);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterBy"></param>
+        /// <param name="exactMatch"></param>
+        /// <param name="dependencies"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetFileImportSources(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IEnumerable<IFileImportBatchDropdownItem>>> GetFileImportBatches(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="batchId"></param>
+        /// <param name="deletedBy"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<bool>> DeleteBatch(int batchId, string deletedBy);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="batchDetailId"></param>
+        /// <param name="deletedBy"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<bool>> DeleteBatchItem(int batchDetailId, string deletedBy);
+
+        
+
         #endregion
     }
 }
