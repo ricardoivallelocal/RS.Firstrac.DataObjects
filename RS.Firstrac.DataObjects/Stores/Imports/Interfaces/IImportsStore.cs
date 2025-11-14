@@ -101,12 +101,25 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="batchId"></param>
+        /// <param name="deletedBy"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<bool>> DeleteBatches(int[] batchIds, string deletedBy);
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="batchDetailId"></param>
         /// <param name="deletedBy"></param>
         /// <returns></returns>
-        Task<IAPIOperationResult<bool>> DeleteBatchItem(int batchDetailId, string deletedBy);
+        Task<IAPIOperationResult<bool>> DeleteBatchItems(int[] batchDetailIds, string deletedBy);
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="importHeaderIds"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<ICollection<IBatchDetailsResponse>>> GetBatchDetails(int[] importHeaderIds);
 
         #endregion
     }

@@ -121,9 +121,15 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
             return await _firstracApiHelper.DeleteAsync<APIOperationResult<bool>>($"api/Imports/Batch/{batchId}?deletedBy={deletedBy}");
         }
 
-        public async Task<IAPIOperationResult<bool>> DeleteBatchItem(int batchDetailId, string deletedBy)
+
+        public async Task<IAPIOperationResult<bool>> DeleteBatches(int[] batchIds, string deletedBy)
         {
-            return await _firstracApiHelper.DeleteAsync<APIOperationResult<bool>>($"api/Imports/BatchItem/{batchDetailId}?deletedBy={deletedBy}");
+            return await _firstracApiHelper.PostAsync<int[], APIOperationResult<bool>>($"api/Imports/deleteBatches?deletedBy={deletedBy}", batchIds);
+        }
+
+        public async Task<IAPIOperationResult<bool>> DeleteBatchItems(int[] batchDetailIds, string deletedBy)
+        {
+            return await _firstracApiHelper.PostAsync<int[],APIOperationResult<bool>>($"api/Imports/deleteBatchItems?deletedBy={deletedBy}",batchDetailIds);
         }
 
         Task<IAPIOperationResult<IImportRequestBase>> IStoreBase<IImportRequestBase>.Get(int id)
@@ -141,6 +147,11 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
         public Task<IAPIOperationResult<bool>> Save(IPlanImportRequest model)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IAPIOperationResult<ICollection<IBatchDetailsResponse>>> GetBatchDetails(int[] importHeaderIds)
+        {
+            return await _firstracApiHelper.PostAsync<int[], APIOperationResult<ICollection<IBatchDetailsResponse>>>($"api/Imports/batchDetails", importHeaderIds);
         }
         #endregion
     }
