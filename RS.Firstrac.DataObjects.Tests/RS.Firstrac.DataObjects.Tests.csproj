@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="RS.Common.Data.API.AspNet6" Version="2023.8.2.4" />
-    <PackageReference Include="RS.Firstrac.BusinessObjects" Version="2025.11.19.2" />
+    <PackageReference Include="RS.Firstrac.BusinessObjects" Version="2025.12.16.1" />
   </ItemGroup>
 
   <ItemGroup>
