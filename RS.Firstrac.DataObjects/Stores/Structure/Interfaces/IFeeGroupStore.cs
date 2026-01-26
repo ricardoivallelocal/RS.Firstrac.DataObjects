@@ -47,6 +47,16 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
         /// <returns></returns>
         Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdownByWhiteLabelSubGroupIds(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterBy"></param>
+        /// <param name="exactMatch"></param>
+        /// <param name="dependencies"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetFeeGroupByFeeGroupAccountId(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null);
+
+        
         #endregion
     }
 }
