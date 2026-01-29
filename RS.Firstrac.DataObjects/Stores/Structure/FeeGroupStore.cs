@@ -80,7 +80,14 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
             var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
             return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroup/dropdownItemsByWhiteLabelSubGroupIds", request);
         }
+
+        public async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetFeeGroupByFeeGroupAccountId(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
+        {
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroup/dropdownItemsByFeeGroupAccountId", request);
+        }
         
+
         /// <summary>
         /// Saves the specified model.
         /// </summary>
