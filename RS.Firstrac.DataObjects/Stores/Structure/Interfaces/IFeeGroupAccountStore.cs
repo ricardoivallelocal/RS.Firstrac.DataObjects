@@ -77,6 +77,12 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
         /// <returns>Task&lt;IAPIOperationResult&lt;System.Boolean&gt;&gt;.</returns>
         Task<IAPIOperationResult<int?>> Create(IFeeGroupAccountAddRequest request);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IFeeGroupAccount>> ChangeAccountFeeGroup(IFeeGroupChangeRequest request);
         #endregion
     }
 }

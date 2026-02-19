@@ -149,9 +149,25 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
             return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroupAccount/dropdownItemsByWhiteLabelSubGroupsAndFeeGroup", request);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public async Task<IAPIOperationResult<int?>> Create(IFeeGroupAccountAddRequest request)
         {
             return await _firstracApiHelper.PostAsync<IFeeGroupAccountAddRequest, APIOperationResult<int?>>("api/FeeGroupAccount/create", request);
+        }
+
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<IAPIOperationResult<IFeeGroupAccount>> ChangeAccountFeeGroup(IFeeGroupChangeRequest request)
+        {
+            return await _firstracApiHelper.PostAsync<IFeeGroupChangeRequest, APIOperationResult<IFeeGroupAccount>>("api/FeeGroupAccount/changeAccountFeeGroup", request);
         }
         #endregion
     }
