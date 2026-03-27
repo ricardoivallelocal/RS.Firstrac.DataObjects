@@ -3,6 +3,7 @@ using RS.Common.Data.API6.Interfaces.Generic;
 using RS.Firstrac.BusinessObjects.Models.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
 using RS.Firstrac.BusinessObjects.Models.Lookup.Interfaces;
+using RS.Firstrac.BusinessObjects.Models.Product;
 using RS.Firstrac.BusinessObjects.Models.Product.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Requests;
 using RS.Firstrac.DataObjects.ApiIHelper;
@@ -61,6 +62,18 @@ namespace RS.Firstrac.DataObjects.Stores.Product
             var request = GetAllRequest.Build(activeOnly ?? true, filterBy, exactMatch ?? true, mutuallyExclusive ?? false, includeNavigationProperties ?? true, null, false, dependencies);
             return await _firstracApiHelper.PostAsync<IGetAllRequest, APIOperationResult<IEnumerable<IManagedReportParameter>>>($"api/ManagedReportParameter/filteredBy", request);
         }
+
+        /// <summary>
+        /// Retrieves all account numbers that are active
+        /// </summary>
+        /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IProduct&gt;&gt;.</returns>
+        public async Task<IAPIOperationResult<IManagedReportParametersResponse>> GetAllWithExtendedData(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string, object>? dependencies = null, string? userName = null)
+        {
+            var request = GetAllRequest.Build(activeOnly ?? true, filterBy, exactMatch ?? true, mutuallyExclusive ?? false, includeNavigationProperties ?? true, null, false, dependencies);
+            var reportParamsRequest = ManagedReportParametersRequest.BuildManagedReportParametersRequest(request, userName);
+            return await _firstracApiHelper.PostAsync<IManagedReportParametersRequest, APIOperationResult<IManagedReportParametersResponse>>($"api/ManagedReportParameter/filteredByExtended", reportParamsRequest);
+        }
+
 
         /// <summary>
         /// Saves the specified model.
