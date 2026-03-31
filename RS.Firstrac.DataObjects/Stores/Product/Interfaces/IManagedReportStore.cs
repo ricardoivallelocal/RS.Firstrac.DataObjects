@@ -14,11 +14,26 @@ namespace RS.Firstrac.DataObjects.Stores.Product.Interfaces
         #region Methods
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IManagedReportRunResponse>> RunReport(IManagedReportRunRequest request);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="managedReportId"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IManagedReportParametersResponse>> AddOrRemoveFromFavorites(int managedReportId, string? userName);
+
+        /// <summary>
         /// Deletes the specified identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task&lt;IAPIOperationResult&lt;System.Boolean&gt;&gt;.</returns>
-        
+
         Task<IAPIOperationResult<bool>> Delete(int id, string deletedBy);
         /// <summary>
         /// Gets the specified identifier.

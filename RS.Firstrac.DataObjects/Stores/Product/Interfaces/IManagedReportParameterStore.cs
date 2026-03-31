@@ -34,6 +34,8 @@ namespace RS.Firstrac.DataObjects.Stores.Product.Interfaces
         /// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>       
         Task<IAPIOperationResult<IEnumerable<IManagedReportParameter>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null);
   
+        Task<IAPIOperationResult<IManagedReportParametersResponse>> GetAllWithExtendedData(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string, object>? dependencies = null, string? userName = null);
+        
         /// <summary>
         /// Saves the specified model.
         /// </summary>

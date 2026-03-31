@@ -3,6 +3,7 @@ using RS.Common.Data.API6.Interfaces.Generic;
 using RS.Firstrac.BusinessObjects.Models.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
 using RS.Firstrac.BusinessObjects.Models.Lookup.Interfaces;
+using RS.Firstrac.BusinessObjects.Models.Product;
 using RS.Firstrac.BusinessObjects.Models.Product.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Requests;
 using RS.Firstrac.DataObjects.ApiIHelper;
@@ -42,6 +43,22 @@ namespace RS.Firstrac.DataObjects.Stores.Product
 
         #region Public Methods
 
+        public async Task<IAPIOperationResult<IManagedReportRunResponse>> RunReport(IManagedReportRunRequest request)
+        {           
+            return await _firstracApiHelper.PostAsync<IManagedReportRunRequest, APIOperationResult<IManagedReportRunResponse>>($"api/ManagedReport/runReport", request);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="managedReportId"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public async Task<IAPIOperationResult<IManagedReportParametersResponse>> AddOrRemoveFromFavorites(int managedReportId, string? userName)
+        {
+            var request = AddOrRemoveManagedReportFromFavoritesRequest.BuildRequest(managedReportId, userName);
+            return await _firstracApiHelper.PostAsync<IAddOrRemoveManagedReportFromFavoritesRequest, APIOperationResult<IManagedReportParametersResponse>>($"api/ManagedReport/addOrRemoveFromFavorites", request);
+        }
         /// <summary>
         /// Retrieves all account numbers that are active
         /// </summary>
