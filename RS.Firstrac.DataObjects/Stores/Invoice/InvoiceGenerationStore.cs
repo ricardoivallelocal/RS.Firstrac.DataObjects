@@ -1,5 +1,6 @@
 ﻿using RS.Common.Data.API6.Generic;
 using RS.Common.Data.API6.Interfaces.Generic;
+using RS.Firstrac.BusinessObjects.Models.Invoice;
 using RS.Firstrac.BusinessObjects.Models.Invoice.Interfaces;
 using RS.Firstrac.DataObjects.ApiIHelper;
 using RS.Firstrac.DataObjects.Stores.Invoice.Interfaces;
@@ -65,6 +66,12 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
         public async Task<IAPIOperationResult<bool>> Void(IVoidInvoiceRequest request)
         {
             return await _firstracApiHelper.PostAsync<IVoidInvoiceRequest, APIOperationResult<bool>>($"api/invoiceGeneration/void/", request);
+        }
+
+        /// <inheritdoc cref="IInvoiceGenerationStore.GetBatchInvoiceHistory(string?)"/>
+        public async Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetBatchInvoiceHistory(string? accountNumber = null)
+        {
+            return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<BatchInvoiceHistoryItem>>>($"api/invoiceGeneration/batchInvoiceHistory?accountNumber={accountNumber}");
         }
         #endregion
     }
