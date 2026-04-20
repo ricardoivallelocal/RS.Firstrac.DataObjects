@@ -80,6 +80,15 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
         }
 
         /// <summary>
+        /// Retrieves all account numbers that are active
+        /// </summary>
+        /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAssetGroupCusipLink&gt;&gt;.</returns>
+        public  async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetManagedRolesDropdownItems(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
+        {
+            var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
+            return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/PersonCompanyRoleLink/managedRolesDropdownItems?includeOnlyManagedRoles={true}", request);
+        }
+        /// <summary>
         /// Saves the specified model.
         /// </summary>
         /// <param name="model">The model.</param>

@@ -59,6 +59,15 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         /// </summary>
         /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAssetGroupCusipLink&gt;&gt;.</returns>
         Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string,object>? dependencies = null);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filterBy"></param>
+        /// <param name="exactMatch"></param>
+        /// <param name="dependencies"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetManagedRolesDropdownItems(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string,object>? dependencies = null);
         #endregion
     }
 }

@@ -59,7 +59,15 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
         /// <param name="searchPattern">The search pattern.</param>
         /// <param name="activeOnly">if set to <c>true</c> [active only].</param>
         /// <returns></returns>
-        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetTemplatesForDropdown(string searchPattern, bool activeOnly);
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetTemplatesForDropdown(string? searchPattern, bool activeOnly);
+
+        /// <summary>
+        /// Gets ALL the templates for dropdown.
+        /// </summary>
+        /// <param name="searchPattern">The search pattern.</param>
+        /// <param name="activeOnly">if set to <c>true</c> [active only].</param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetAllTemplatesForDropdown();
 
         /// <summary>
         /// Gets for dropdown by white label sub groups and fee group.
