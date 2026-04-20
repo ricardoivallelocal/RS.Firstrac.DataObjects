@@ -26,7 +26,7 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="invoiceAccountStore"/> class.
+        /// Initializes a new instance of the <see cref="InvoiceGenerationStore"/> class.
         /// </summary>
         /// <param name="firstracApiHelper">The firstrac API helper.</param>
         public InvoiceGenerationStore(IFirstracApiHelper firstracApiHelper)
@@ -71,7 +71,7 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
         /// <inheritdoc cref="IInvoiceGenerationStore.GetBatchInvoiceHistory(string?)"/>
         public async Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetBatchInvoiceHistory(string? accountNumber = null)
         {
-            return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<BatchInvoiceHistoryItem>>>($"api/invoiceGeneration/batchInvoiceHistory?accountNumber={accountNumber}");
+            return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<BatchInvoiceHistoryItem>>>($"api/invoiceGeneration/batch-invoice-history?accountNumber={accountNumber}");
         }
         #endregion
     }
