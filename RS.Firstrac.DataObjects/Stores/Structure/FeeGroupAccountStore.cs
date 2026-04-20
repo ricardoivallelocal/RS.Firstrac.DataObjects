@@ -81,10 +81,16 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
         /// Retrieves all account numbers that are active
         /// </summary>
         /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAssetGroupCusipLink&gt;&gt;.</returns>
-        public async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetTemplatesForDropdown(string searchPattern, bool activeOnly)
+        public async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetTemplatesForDropdown(string? searchPattern, bool activeOnly)
         {
 
             return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroupAccount/template/dropdownItems?searchPattern={searchPattern}&activeOnly={activeOnly}");
+        }
+
+        public async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetAllTemplatesForDropdown()
+        {
+
+            return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroupAccount/template/dropdownItems");
         }
         /// <summary>
         /// Saves the specified model.
