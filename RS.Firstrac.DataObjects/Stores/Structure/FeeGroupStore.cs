@@ -7,6 +7,7 @@ using RS.Firstrac.BusinessObjects.Models.Product.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Interfaces;
 using RS.Firstrac.BusinessObjects.Models.Interfaces.Requests;
 using RS.Firstrac.BusinessObjects.Models.Requests;
+using RS.Firstrac.BusinessObjects.Models.Structure;
 
 namespace RS.Firstrac.DataObjects.Stores.Structure
 {
@@ -57,6 +58,25 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
                 return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IFeeGroup>>>($"api/FeeGroup?activeOnly={activeOnly}&includeAllNavigationProperties={includeNavigationProperties}");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="activeOnly"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<IAPIOperationResult<IFeeGroupPagedResult>> GetAllPaged(bool? activeOnly, int? pageIndex = null, int? pageSize = null)
+        {
+            try
+            {
+                var result= await _firstracApiHelper.GetAsync<APIOperationResult<IFeeGroupPagedResult>>($"api/FeeGroup/paged?activeOnly={activeOnly}&pageIndex={pageIndex}&pageSize={pageSize}");
+                return result;
+            }
+           catch(Exception ex)
+            {
+                throw;
+            }
+        }
         /// <summary>
         /// Retrieves all account numbers that are active
         /// </summary>

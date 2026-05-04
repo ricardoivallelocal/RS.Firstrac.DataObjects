@@ -54,12 +54,33 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
         Task<IAPIOperationResult<bool>> Close(int feeGroupAccountId);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="activeOnly"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IEnumerable<IFeeGroupAccount>>> GetAllTemplates(bool activeOnly);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="activeOnly"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IFeeGroupAccountPagedResult>> GetAllTemplatesPaged(bool activeOnly,int? pageIndex = null, int? pageSize = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="activeOnly"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<IFeeGroupAccountPagedResult>> GetAllNonTemplateNonFeeGroupAccounts(bool activeOnly, int? pageIndex = null, int? pageSize=null);
+
+        /// <summary>
         /// Gets the templates for dropdown.
         /// </summary>
         /// <param name="searchPattern">The search pattern.</param>
         /// <param name="activeOnly">if set to <c>true</c> [active only].</param>
         /// <returns></returns>
         Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetTemplatesForDropdown(string? searchPattern, bool activeOnly);
+
 
         /// <summary>
         /// Gets ALL the templates for dropdown.
