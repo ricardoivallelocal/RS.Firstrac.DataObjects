@@ -31,6 +31,14 @@ namespace RS.Firstrac.DataObjects.Stores.Structure.Interfaces
         /// </summary>
         /// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>
         Task<IAPIOperationResult<IEnumerable<IFeeGroup>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null);
+
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns>Task&lt;IAPIOperationResult&lt;IEnumerable&lt;TInterface&gt;&gt;&gt;.</returns>
+        Task<IAPIOperationResult<IFeeGroupPagedResult>> GetAllPaged(bool? activeOnly, int? pageIndex = null, int? pageSize = null);
+
+
         /// <summary>
         /// Saves the specified model.
         /// </summary>

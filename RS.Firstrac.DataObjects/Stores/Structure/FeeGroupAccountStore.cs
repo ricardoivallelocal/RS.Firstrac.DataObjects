@@ -46,7 +46,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
         /// Retrieves all account numbers that are active
         /// </summary>
         /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IFeeGroup&gt;&gt;.</returns>
-        public async Task<IAPIOperationResult<IEnumerable<IFeeGroupAccount>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string,object>? dependencies = null)
+        public async Task<IAPIOperationResult<IEnumerable<IFeeGroupAccount>>> GetAll(bool? activeOnly, Dictionary<string, object>? filterBy = null, bool? exactMatch = true, bool? mutuallyExclusive = false, bool? includeNavigationProperties = true, Dictionary<string, object>? dependencies = null)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
                 {
                     var request = GetAllRequest.Build(activeOnly ?? true, filterBy, exactMatch ?? true, mutuallyExclusive ?? false, includeNavigationProperties ?? true, null, false, dependencies);
                     return await _firstracApiHelper.PostAsync<IGetAllRequest, APIOperationResult<IEnumerable<IFeeGroupAccount>>>($"api/FeeGroupAccount/filteredBy", request);
-                    
+
                 }
 
                 else
@@ -71,10 +71,45 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
         /// Retrieves all account numbers that are active
         /// </summary>
         /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAssetGroupCusipLink&gt;&gt;.</returns>
-        public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string,object>? dependencies = null)
+        public override async Task<IAPIOperationResult<IEnumerable<IDropdownItem>>> GetForDropdown(Dictionary<string, object>? filterBy, bool exactMatch = false, Dictionary<string, object>? dependencies = null)
         {
             var request = GetForDropdownRequest.Build(filterBy, exactMatch, dependencies);
             return await _firstracApiHelper.PostAsync<IGetForDropdownRequest, APIOperationResult<IEnumerable<IDropdownItem>>>($"api/FeeGroupAccount/dropdownItems", request);
+        }
+
+        /// <summary>
+        /// Retrieves all account numbers that are active
+        /// </summary>
+        /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAssetGroupCusipLink&gt;&gt;.</returns>
+        public async Task<IAPIOperationResult<IFeeGroupAccountPagedResult>> GetAllNonTemplateNonFeeGroupAccounts(bool activeOnly, int? pageIndex = null, int? pageSize = null)
+        {
+            try { 
+                
+                return await _firstracApiHelper.GetAsync<APIOperationResult<IFeeGroupAccountPagedResult>>($"api/FeeGroupAccount/nonTemplateNonFeeGroups?activeOnly={activeOnly}&pageIndex={pageIndex}&pageSize={pageSize}"); }
+            catch (Exception ex) { throw ex; }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="activeOnly"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<IAPIOperationResult<IFeeGroupAccountPagedResult>> GetAllTemplatesPaged(bool activeOnly, int? pageIndex = null, int? pageSize = null)
+        {
+            return await _firstracApiHelper.GetAsync<APIOperationResult<IFeeGroupAccountPagedResult>>($"api/FeeGroupAccount/template/paged?activeOnly={activeOnly}&pageIndex={pageIndex}&pageSize={pageSize}");
+        }
+
+        /// <summary>
+        /// Retrieves all account numbers that are active
+        /// </summary>
+        /// <returns>IAPIOperationResult&lt;IEnumerable&lt;IAssetGroupCusipLink&gt;&gt;.</returns>
+        public async Task<IAPIOperationResult<IEnumerable<IFeeGroupAccount>>> GetAllTemplates(bool activeOnly)
+        {
+
+            return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<IFeeGroupAccount>>>($"api/FeeGroupAccount/template?activeOnly={activeOnly}");
         }
 
         /// <summary>
@@ -165,7 +200,7 @@ namespace RS.Firstrac.DataObjects.Stores.Structure
             return await _firstracApiHelper.PostAsync<IFeeGroupAccountAddRequest, APIOperationResult<int?>>("api/FeeGroupAccount/create", request);
         }
 
-       
+
         /// <summary>
         /// 
         /// </summary>
