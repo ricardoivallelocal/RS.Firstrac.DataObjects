@@ -61,6 +61,13 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         Task<IAPIOperationResult<int?>> RunPlanImport(IPlanImportRequest request);
 
         /// <summary>
+        /// Runs the plan import.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<decimal?>> ReAssertAmount(IPlanImportRequest request);
+
+        /// <summary>
         /// Runs the file import.
         /// </summary>
         /// <param name="request">The request.</param>
@@ -120,6 +127,13 @@ namespace RS.Firstrac.DataObjects.Stores.Admin.Interfaces
         /// <param name="importHeaderIds"></param>
         /// <returns></returns>
         Task<IAPIOperationResult<ICollection<IBatchDetailsResponse>>> GetBatchDetails(int[] importHeaderIds);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="feeGroupAccountId"></param>
+        /// <returns></returns>
+        Task<IAPIOperationResult<ICollection<IBatchDetailsResponse>>> GetPlanImportHistory(int feeGroupAccountId);
 
         #endregion
     }

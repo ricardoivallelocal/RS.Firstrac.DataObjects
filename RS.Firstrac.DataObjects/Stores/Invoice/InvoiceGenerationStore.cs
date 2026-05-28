@@ -73,6 +73,17 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
         {
             return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<BatchInvoiceHistoryItem>>>($"api/invoiceGeneration/batch-invoice-history?accountNumber={accountNumber}");
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="batchId"></param>
+        /// <returns></returns>
+        public async Task<IAPIOperationResult<IBatchInvoiceResponse>> GetBatchDetails(int batchId)
+        {
+            return await _firstracApiHelper.GetAsync<APIOperationResult<IBatchInvoiceResponse>>($"api/invoiceGeneration/batchDetails?batchId={batchId}");
+        }
         #endregion
     }
 }
