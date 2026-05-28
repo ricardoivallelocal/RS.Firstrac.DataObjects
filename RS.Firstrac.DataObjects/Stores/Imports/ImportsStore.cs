@@ -22,6 +22,7 @@ using RS.Firstrac.DataObjects.Stores.Admin.Interfaces;
 using RS.Firstrac.DataObjects.Stores.Interfaces;
 using System.Linq.Expressions;
 using System.Collections.Generic;
+using RS.Firstrac.BusinessObjects.Models.Lookup.Interfaces;
 
 namespace RS.Firstrac.DataObjects.Stores.Admin
 {
@@ -93,6 +94,13 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
 
         }
 
+        public async Task<IAPIOperationResult<decimal?>> ReAssertAmount(IPlanImportRequest request)
+        {
+
+            return await _firstracApiHelper.PostAsync<IPlanImportRequest, APIOperationResult<decimal?>>($"api/imports/reAssertAmount/", request);
+
+        }
+
         public async Task<IAPIOperationResult<int?>> RunFileImport(IFileImportRequest request)
         {
 
@@ -152,6 +160,12 @@ namespace RS.Firstrac.DataObjects.Stores.Admin
         public async Task<IAPIOperationResult<ICollection<IBatchDetailsResponse>>> GetBatchDetails(int[] importHeaderIds)
         {
             return await _firstracApiHelper.PostAsync<int[], APIOperationResult<ICollection<IBatchDetailsResponse>>>($"api/Imports/batchDetails", importHeaderIds);
+        }
+
+        public async Task<IAPIOperationResult<ICollection<IBatchDetailsResponse>>> GetPlanImportHistory(int feeGroupAccountId)
+        {
+            return await _firstracApiHelper.GetAsync<APIOperationResult<ICollection<IBatchDetailsResponse>>>($"api/Imports/planImportHistory?feeGroupAccountId={feeGroupAccountId}");
+
         }
         #endregion
     }
