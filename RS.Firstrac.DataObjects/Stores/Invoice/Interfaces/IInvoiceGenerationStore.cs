@@ -34,17 +34,11 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice.Interfaces
         /// <returns></returns>
         Task<IAPIOperationResult<bool>> Void(IVoidInvoiceRequest request);
 
-		/// <summary>
-		/// Get all batch invoice history.
-		/// </summary>
-		/// <returns></returns>
-		Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetAllBatchInvoiceHistory();
-
-		/// <summary>
-		/// Get invoice history list by Account Number.
-		/// </summary>
-		/// <returns></returns>
-		Task<IAPIOperationResult<IEnumerable<IInvoiceHistoryItemOfAccount>>> GetInvoiceHistoryByAccountNumber(string accountNumber);
+        /// <summary>
+        /// Get batch invoice history, optionally filtering by account number.
+        /// </summary>
+        /// <returns></returns>
+        //Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetBatchInvoiceHistory(string? accountNumber = null);
 
 		/// <summary>
 		/// 

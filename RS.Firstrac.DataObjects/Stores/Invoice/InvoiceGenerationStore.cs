@@ -68,11 +68,11 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
             return await _firstracApiHelper.PostAsync<IVoidInvoiceRequest, APIOperationResult<bool>>($"api/invoiceGeneration/void/", request);
         }
 
-        /// <inheritdoc cref="IInvoiceGenerationStore.GetAllBatchInvoiceHistory()"/>
-        public async Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetAllBatchInvoiceHistory()
-        {
-            return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<BatchInvoiceHistoryItem>>>($"api/invoiceGeneration/batch-invoice-history/all");
-        }
+        ///// <inheritdoc cref="IInvoiceGenerationStore.GetBatchInvoiceHistory(string?)"/>
+        //public async Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetBatchInvoiceHistory(string? accountNumber = null)
+        //{
+        //    return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<BatchInvoiceHistoryItem>>>($"api/invoiceGeneration/batch-invoice-history?accountNumber={accountNumber}");
+        //}
 
 		/// <inheritdoc cref="IInvoiceGenerationStore.GetInvoiceHistoryByAccountNumber(string)"/>
 		public async Task<IAPIOperationResult<IEnumerable<IInvoiceHistoryItemOfAccount>>> GetInvoiceHistoryByAccountNumber(string accountNumber)
