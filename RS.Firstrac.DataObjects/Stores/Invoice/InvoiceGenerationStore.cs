@@ -68,19 +68,27 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
             return await _firstracApiHelper.PostAsync<IVoidInvoiceRequest, APIOperationResult<bool>>($"api/invoiceGeneration/void/", request);
         }
 
+        
+        /// <inheritdoc cref="IInvoiceGenerationStore.GetInvoiceHistoryBatch" />
+        public async Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetInvoiceHistoryBatch()
         /// <inheritdoc cref="IInvoiceGenerationStore.GetBatchInvoiceHistory(string?)"/>
         public async Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetInvoiceHistoryBatch(string? accountNumber = null)
         {
-            return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<BatchInvoiceHistoryItem>>>($"api/invoiceGeneration/batch-invoice-history?accountNumber={accountNumber}");
+            return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<BatchInvoiceHistoryItem>>>($"api/invoiceGeneration/batch-invoice-history");
         }
 
+		/// <inheritdoc cref="IInvoiceGenerationStore.GetInvoiceHistoryByAccountNumber(string)"/>
+		public async Task<IAPIOperationResult<IEnumerable<IInvoiceHistoryItemOfAccount>>> GetInvoiceHistoryByAccountNumber(string accountNumber)
+		{
+			return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<InvoiceHistoryItemOfAccount>>>($"api/invoiceGeneration/invoice-history/{accountNumber}", accountNumber);
+		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="batchId"></param>
-        /// <returns></returns>
-        public async Task<IAPIOperationResult<IBatchInvoiceResponse>> GetBatchDetails(int batchId)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="batchId"></param>
+		/// <returns></returns>
+		public async Task<IAPIOperationResult<IBatchInvoiceResponse>> GetBatchDetails(int batchId)
         {
             return await _firstracApiHelper.GetAsync<APIOperationResult<IBatchInvoiceResponse>>($"api/invoiceGeneration/batchDetails?batchId={batchId}");
         }
