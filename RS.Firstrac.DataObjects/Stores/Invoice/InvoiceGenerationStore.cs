@@ -69,7 +69,7 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
         }
 
         /// <inheritdoc cref="IInvoiceGenerationStore.GetBatchInvoiceHistory(string?)"/>
-        public async Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetBatchInvoiceHistory(string? accountNumber = null)
+        public async Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetInvoiceHistoryBatch(string? accountNumber = null)
         {
             return await _firstracApiHelper.GetAsync<APIOperationResult<IEnumerable<BatchInvoiceHistoryItem>>>($"api/invoiceGeneration/batch-invoice-history?accountNumber={accountNumber}");
         }
