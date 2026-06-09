@@ -77,7 +77,7 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice
 		/// <inheritdoc cref="IInvoiceGenerationStore.GetBatchInvoiceHistoryDetailByBatchId(int)" />
 		public async Task<IAPIOperationResult<IBatchInvoiceHistoryDetail?>> GetBatchInvoiceHistoryDetailByBatchId(int batchId)
 		{
-			return await _firstracApiHelper.GetAsync<APIOperationResult<IBatchInvoiceHistoryDetail>>($"api/invoiceGeneration/batch-invoice-history/detail/{batchId}");
+			return await _firstracApiHelper.GetAsync<APIOperationResult<BatchInvoiceHistoryDetail>>($"api/invoiceGeneration/batch-invoice-history/detail/{batchId}");
 		}
 
 		/// <inheritdoc cref="IInvoiceGenerationStore.GetInvoiceHistoryByAccountNumber(string)"/>
