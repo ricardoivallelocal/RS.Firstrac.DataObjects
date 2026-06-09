@@ -41,6 +41,12 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice.Interfaces
 		Task<IAPIOperationResult<IEnumerable<IBatchInvoiceHistoryItem>>> GetInvoiceHistoryBatch();
 
 		/// <summary>
+		/// Get batch invoice history detail by batch id.
+		/// </summary>
+		/// <returns></returns>
+		Task<IAPIOperationResult<IBatchInvoiceHistoryDetail?>> GetBatchInvoiceHistoryDetailByBatchId(int batchId);
+
+		/// <summary>
 		/// Get batch invoice history by account number.
 		/// </summary>
 		/// <param name="accountNumber"></param>
