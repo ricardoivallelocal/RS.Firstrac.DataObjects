@@ -51,7 +51,7 @@ namespace RS.Firstrac.DataObjects.Stores.Invoice.Interfaces
 		/// </summary>
 		/// <param name="accountNumber"></param>
 		/// <returns></returns>
-		Task<IAPIOperationResult<IEnumerable<IInvoiceHistoryItemOfAccount>>> GetInvoiceHistoryByAccountNumber(string accountNumber);
+		Task<IAPIOperationResult<IEnumerable<IInvoiceHistoryItemOfAccount>>> GetInvoiceHistoryByAccountNumber(string accountNumber, bool? includeVoid = true);
         /// <summary>
         /// Get batch invoice history, optionally filtering by account number.
         /// </summary>
